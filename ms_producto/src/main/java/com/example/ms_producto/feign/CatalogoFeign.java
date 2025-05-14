@@ -12,6 +12,8 @@ public interface CatalogoFeign {
     @GetMapping("/{id}")
     @CircuitBreaker(name = "categoriaListarPorIdCB", fallbackMethod = "fallbackCategoriaListarPorId")
     public ResponseEntity<CategoriaDto> buscarCategoria(@PathVariable Integer id);
+
+
     default ResponseEntity<CategoriaDto> fallbackClientById(Integer id, Exception e) {
         CategoriaDto categoriaDto = new CategoriaDto();
         categoriaDto.setNombre("Servicio no disponible de cliente");
